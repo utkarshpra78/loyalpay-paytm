@@ -1,0 +1,1 @@
+"""LoyalPay Test Suite"""

@@ -1,0 +1,49 @@
+# Render Blueprint - Deploy all 3 services
+# https://render.com/docs/blueprint-spec
+
+services:
+  # Backend API (Web Service)
+  - type: web
+    name: loyalpay-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.api:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+
+  # Merchant App (Static Site - Free)
+  - type: web
+    name: loyalpay-merchant
+    runtime: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        value: https://loyalpay-api.onrender.com
+
+  # Customer App (Static Site - Free)
+  - type: web
+    name: loyalpay-customer
+    runtime: static
+    buildCommand: cd customer-app && npm install && npm run build
+    staticPublishPath: customer-app/dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        value: https://loyalpay-api.onrender.com

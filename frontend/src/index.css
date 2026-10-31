@@ -1,0 +1,366 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Core palette */
+  --bg-page: #F5F6F8;
+  --bg-surface: #FFFFFF;
+  --text-primary: #1A1D21;
+  --text-secondary: #5F6368;
+  --text-muted: #80868B;
+  --accent: #0B4F9C;
+  --accent-light: #E8F0FE;
+  --divider: #E3E5E8;
+  
+  /* Status colors - only for meaning */
+  --green: #138A36;
+  --green-bg: #E6F4EA;
+  --amber: #B26A00;
+  --amber-bg: #FEF7E0;
+  --red: #C62828;
+  --red-bg: #FCEAEA;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Roboto', 'Segoe UI', sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Tabular numbers for amounts */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Phone frame - subtle */
+.phone-frame {
+  width: 375px;
+  height: 812px;
+  background: var(--bg-page);
+  border-radius: 40px;
+  box-shadow: 
+    0 0 0 11px #1F2023,
+    0 0 0 13px #3D3F43;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Android status bar */
+.status-bar {
+  height: 24px;
+  background: var(--bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.status-bar-icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Content area */
+.phone-content {
+  height: calc(100% - 24px - 56px);
+  overflow-y: auto;
+  background: var(--bg-page);
+}
+
+.phone-content::-webkit-scrollbar {
+  width: 0;
+  display: none;
+}
+
+/* Section styling */
+.section {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--divider);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.section-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+/* List rows */
+.list-row {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--divider);
+  background: var(--bg-surface);
+}
+
+.list-row:last-child {
+  border-bottom: none;
+}
+
+/* Primary button */
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Secondary button */
+.btn-secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--divider);
+  cursor: pointer;
+}
+
+/* Bottom navigation */
+.bottom-nav {
+  height: 56px;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--divider);
+  display: flex;
+  align-items: stretch;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.nav-item.active {
+  color: var(--accent);
+}
+
+.nav-item svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.75;
+}
+
+/* Amount styling */
+.amount {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.amount-lg {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.amount-md {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Status badges */
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.badge-green {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.badge-amber {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+
+.badge-red {
+  background: var(--red-bg);
+  color: var(--red);
+}
+
+/* Icon container */
+.icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Checkbox */
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--divider);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.checkbox.checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.checkbox.checked svg {
+  color: white;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 72px;
+  left: 16px;
+  right: 16px;
+  background: var(--text-primary);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 100;
+}
+
+/* Bottom sheet */
+.bottom-sheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-surface);
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+  z-index: 50;
+}
+
+.bottom-sheet-handle {
+  width: 32px;
+  height: 4px;
+  background: var(--divider);
+  border-radius: 2px;
+  margin: 8px auto;
+}
+
+/* Empty state - centered */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+/* Input */
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* Progress bar */
+.progress-bar {
+  height: 4px;
+  background: var(--divider);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--divider);
+}
+
+/* Spacer */
+.spacer {
+  height: 8px;
+  background: var(--bg-page);
+}

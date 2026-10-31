@@ -1,0 +1,22 @@
+# Koyeb deployment configuration
+# Deploy via: koyeb deploy or GitHub integration
+
+name: loyalpay-api
+type: web
+definition:
+  name: loyalpay-api
+  docker:
+    dockerfile: Dockerfile
+  ports:
+    - port: 8000
+      protocol: http
+  regions:
+    - fra
+  instance_types:
+    - type: free
+  scaling:
+    min: 1
+    max: 1
+  env:
+    - key: PORT
+      value: "8000"
